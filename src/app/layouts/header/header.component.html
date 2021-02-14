@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-size: 25px;">
+    <div class="container-fluid">
+      <div>
+        <a 
+          style="color:black;"
+          routerLinkActive="active">Shopping Website</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="nav-item" *ngIf="isUserValid" style="margin-left: 10px;">
+            <a
+              class="nav-link"
+              routerLink="/product"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }">Products</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li>
+            <a
+              class="nav-link"
+              routerLink="/auth"
+              routerLinkActive="active"
+              style="cursor: pointer"
+              (click)="loggingButton()">
+              Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,40 @@
+<body>
+    <div class="login">
+      <Form [formGroup]="loginForm" (ngSubmit)="onSubmitForm()">
+        <div class="container">
+          <div class="col-sm-12 content">
+            <h1>LOGIN</h1>
+            <label>Email</label>
+            <input 
+                type="text"
+                name="email"
+                class="form-control"
+                ng-maxlength="20" 
+                formControlName="email">
+            <div class="alert" *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched">
+              <small *ngIf="loginForm.controls['email'].errors.required">Email is required!</small>
+              <small *ngIf="loginForm.controls['email'].errors.pattern">Enter a valid email!</small>
+            </div>
+            <label>Password</label>
+            <input 
+              type="password"
+              name="password" 
+              class="form-control"
+              ng-maxlength="8"
+              formControlName="password">
+            <div class="alert" *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">
+              <small *ngIf="loginForm.controls['password'].errors.required">Password is required!</small>
+            </div>
+            <button 
+              class="btn" 
+              type="submit" 
+              [disabled]="!loginForm.valid">
+              <b>LOGIN</b>
+            </button>
+            <p>Use this Email: george.bluth@reqres.in</p>
+          </div>
+          <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+        </div>
+      </Form>
+    </div>
+  </body>

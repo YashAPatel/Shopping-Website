@@ -1,0 +1,85 @@
+.body {
+    background-color: #2faada;
+    height: 200%;
+}
+.fill-layout{
+    padding-bottom: 537px;
+}
+.cards,.container{
+    border: 2px solid #050101;
+    border-radius: 20px;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    background-color: #dadada;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+} 
+.user{
+    padding: 15px;
+}
+.row2{
+    margin-right: 15px;
+    margin-left: 15px;
+} 
+.cards{
+    width:800px;
+} 
+.container{
+    max-width: 600px;
+    margin-left: 220px;
+}
+.content{
+    padding:10px;
+    font-weight: bold;
+}
+.text{
+    margin-right:8px;
+    margin-left: 45px;
+}
+span{
+    display: inline-flex;
+}
+.col-md-4{
+    padding:25px;
+} 
+.col-md-8{
+    padding-top: 20px;
+}
+.image{
+    width:70%;
+    border: 2px solid black;
+}
+.btn{
+    background-color:#013481; 
+    color: white; 
+    font-size: 15px;
+    margin-top: 5px;
+}
+small{
+    font-size: 12px;
+    margin-left: 157px;
+    color:red;
+    display: block;
+}
+.title{
+    font-size: 20px;
+    font-weight: bold;
+}
+.price{
+    font-size: 18px;
+    font-weight: bold;
+    margin-right:25px;
+}
+.quantity{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 2px;
+}
+.category{
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 16px;
+}
+.remove{
+    margin-top: -5px;
+    margin-bottom: 5px;
+}

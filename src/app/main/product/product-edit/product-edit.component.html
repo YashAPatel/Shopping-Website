@@ -1,0 +1,93 @@
+<div class="row body">
+  <div class="col-md-4">
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <img
+          class="image"
+          *ngIf="editMode"
+          [src]="updatingProduct.image">
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div>
+      <Form [formGroup]="editForm" (ngSubmit)="onSubmitForm()">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="col-md-12 edit">
+                <br>
+                <h3 class="text-center text-info">
+                  {{ editMode ? "Edit Product" : "Add Product" }}
+                </h3>
+                <br>
+                <div class="form-group">
+                  <label>Product Title:</label>
+                  <br>
+                  <input
+                    type="text"
+                    name="productTitle"
+                    id="productTitle"
+                    class="form-control"
+                    formControlName="productTitle">
+                  <small *ngIf="editForm.controls['productTitle'].invalid && editForm.controls['productTitle'].touched">
+                    Enter a valid Product Title
+                  </small>
+                </div>
+                <div class="form-group">
+                  <label>Category:</label>
+                  <br>
+                  <input
+                    type="text"
+                    name="productCategory"
+                    id="productCategory"
+                    class="form-control"
+                    formControlName="productCategory">
+                  <small *ngIf="editForm.controls['productCategory'].invalid && editForm.controls['productCategory'].touched">
+                    Enter a valid Product Category
+                  </small>
+                </div>
+                <div class="form-group">
+                  <label>Price:</label>
+                  <br>
+                  <input
+                    type="number"
+                    step="any"
+                    name="productPrice"
+                    id="productPrice"
+                    class="form-control"
+                    formControlName="productPrice">
+                  <small *ngIf="editForm.controls['productPrice'].invalid && editForm.controls['productPrice'].touched">
+                    Enter a valid Product Price
+                  </small>
+                </div>
+                <div class="form-group">
+                  <label>Description:</label>
+                  <br>
+                  <textarea
+                    name="productDescription"
+                    class="form-control"
+                    formControlName="productDescription"
+                    style="width: 100%"
+                    rows="6"></textarea>
+                  <small *ngIf="editForm.controls['productDescription'].invalid && editForm.controls['productDescription'].touched">
+                    Enter a valid Input
+                  </small>
+                </div>
+                <div class="form-group button">
+                  <button
+                    type="submit"
+                    class="btn btn-info btn-md"
+                    style='margin-right:8px'
+                    [disabled]="!editForm.valid">SUBMIT</button>
+                  <button class="btn btn-primary" (click)="onCancel()">CANCEL</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+      </Form>
+    </div>
+  </div>
+</div>

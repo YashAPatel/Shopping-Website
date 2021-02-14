@@ -1,0 +1,77 @@
+<div class="body">
+    <Form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
+        <div class="user"></div>
+        <div class="container">
+            <div class="row">
+                <div class="content">
+                    <span class="text">Enter User ID:  </span>
+                    <span>
+                        <input 
+                            type="number"
+                            name="userId"
+                            class="form-control"
+                            ng-maxlength="20" 
+                            style='margin-right:8px'
+                            formControlName="userId">
+                    </span>
+                    <span>
+                        <button 
+                            class="btn btn-primary" 
+                            type="submit" 
+                            style='margin-right:8px'
+                            [disabled]="!userForm.valid">
+                            SEARCH
+                        </button>
+                        <button class="btn btn-primary" (click)="onCancel()">CANCEL</button>
+                    </span>    
+                    <small *ngIf="userForm.controls['userId'].invalid && userForm.controls['userId'].touched">
+                        User Id is required!
+                    </small>            
+                </div>
+            </div>
+        </div> 
+    </Form>
+    <div class="row justify-content-center align-items-center">
+        <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+    </div>
+    <div class="fill-layout" *ngIf="!isSubmit"></div>
+    <div class="row row2">
+        <div class="row md-1 cards" *ngFor="let product of products; let i=index;">
+            <div class="col-md-4">
+                <img 
+                    class="image"
+                    [src]="product.image">
+            </div>
+            <div class="col-md-8">
+                <p class="title">
+                    {{ product.title }}
+                </p>
+                <span class="price">
+                    $ {{ product.price }}
+                </span>
+                <form class="form-inline">
+                    <span>
+                        <p  class="quantity">Qty:</p> 
+                        <input 
+                            type="number"
+                            class="form-control"
+                            style='margin-right:8px'
+                            name="productQuantity"
+                            minvalue="1"
+                            maxvalue="10"
+                            value="1"
+                            (change)="onChangeProductQuantity(i,productQuantity)"
+                            #productQuantity>
+                        <span class="remove">
+                            <button class="btn btn-primary" (click)="onRemoveProduct(i)">REMOVE</button>
+                        </span>
+                    </span>
+                </form>
+                <p class="description">
+                    {{ product.description }}
+                </p>
+                <p class="category">{{ product.category }}</p>
+            </div>
+        </div>
+    </div>  
+</div>
