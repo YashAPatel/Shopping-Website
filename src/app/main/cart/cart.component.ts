@@ -18,13 +18,15 @@ export class CartComponent implements OnInit, OnDestroy {
   public isLoading = false;
   public userForm: FormGroup;
   public isSubmit = false;
+
   public carts : CartModel[] = [];
   public cart: CartModel[] = [];
   public userIdsCart: number;
-  public q:number[]=[];
   public products: ProductModel [] = [];
   public product: ProductModel[]=[];
+
   public subscription : Subscription;
+ 
   constructor(private router: Router,
               private cartService: CartService,
               private productService: ProductService,
@@ -61,8 +63,7 @@ export class CartComponent implements OnInit, OnDestroy {
         }
         if(this.isLoading){
           this.cart[0].products.forEach(element => {
-            this.q.push(+element.quantity);
-            this.productService.getProduct(+element.productId).subscribe(
+            this.subscription = this.productService.getProduct(+element.productId).subscribe(
               resData=>{
                 this.products.push(resData);
                 /* this.products.map(function(x) { 
@@ -78,7 +79,7 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   public onRemoveProduct(index: number) : void {
-    this.cartService.removeProduct(index).subscribe(
+    this.subscription = this.cartService.removeProduct(index).subscribe(
       () => {
         this.toasterService.showSuccess('Product Removed Successfully',this.products[index].title);
         this.products.splice(index, 1);
@@ -90,7 +91,7 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   public onChangeProductQuantity(index: number,productQuantity: HTMLInputElement) : void {
-    this.cartService.changeProductQuantity(this.userIdsCart,index, +productQuantity.value).subscribe(
+    this.subscription = this.cartService.changeProductQuantity(this.userIdsCart,index, +productQuantity.value).subscribe(
       ()=>{
         this.toasterService.showInfo("Product updated",this.userIdsCart);
       },

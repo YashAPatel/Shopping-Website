@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductModel } from '../interfaces/product.model';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { ErrorHandlingService } from './error-handling.service';
 import { ToasterService } from './toaster.service';
@@ -12,7 +12,6 @@ import { ToasterService } from './toaster.service';
 export class ProductService {
 
   private URL = 'https://fakestoreapi.com/products/';
-  private productsChanged = new Subject<ProductModel[]>();
   public product : ProductModel;
   public productsList: ProductModel[];
   constructor(private http: HttpClient,

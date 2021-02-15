@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ProductModel } from '../../interfaces/product.model';
 import { CartService } from '../../services/cart.service';
 import { PagerService } from '../../services/pager.service';
@@ -11,7 +12,7 @@ import { ToasterService } from '../../services/toaster.service';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnDestroy {
 
   public isLoading = false;
   public products: ProductModel[];
@@ -19,6 +20,7 @@ export class ProductComponent implements OnInit {
   public searchTitle: string;
   public pager: any = {};
   public pagedItems: ProductModel[];
+  public subscription: Subscription;
 
   constructor(private router: Router,
               private productService: ProductService, 
@@ -29,7 +31,7 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.productService.fetchProducts()
+    this.subscription = this.productService.fetchProducts()
       .subscribe(
         (products: ProductModel[]) => {
           this.isLoading = false;
@@ -51,7 +53,7 @@ export class ProductComponent implements OnInit {
   }
 
   public onDelete(id: number): void {
-    this.productService.deleteProduct(id).subscribe(
+    this.subscription = this.productService.deleteProduct(id).subscribe(
       (resdata) => {
         console.log(resdata);
         this.toasterService.showSuccess('Product Deleted Successfully',this.products[id].title);
@@ -65,7 +67,7 @@ export class ProductComponent implements OnInit {
   }
 
   public onAddtoCart(index: number): void{
-    this.cartService.addToCart(index,this.products[index]).subscribe(
+    this.subscription = this.cartService.addToCart(index,this.products[index]).subscribe(
       () => {
         this.toasterService.showSuccess(
           this.products[index].title,
@@ -77,5 +79,9 @@ export class ProductComponent implements OnInit {
         this.toasterService.showError('Error', error);
       }
     );
+  }
+
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
   }
 }
