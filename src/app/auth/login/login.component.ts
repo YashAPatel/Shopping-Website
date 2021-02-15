@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service';
-import { ToasterService } from 'src/app/services/toaster.service';
+import { AuthService } from '../../services/auth.service';
+import { ToasterService } from '../../services/toaster.service';
 
 @Component({
   selector: 'app-login',

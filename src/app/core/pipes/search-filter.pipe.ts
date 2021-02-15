@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ProductModel } from 'src/app/interfaces/product.model';
+import { ProductModel } from '../../interfaces/product.model';
 
 @Pipe({
   name: 'SearchFilterPipe',

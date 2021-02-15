@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ProductModel } from 'src/app/interfaces/product.model';
-import { ProductService } from 'src/app/services/product.service';
-import { ToasterService } from 'src/app/services/toaster.service';
+import { ProductModel } from '../../../interfaces/product.model';
+import { ProductService } from '../../../services/product.service';
+import { ToasterService } from '../../../services/toaster.service';
 
 @Component({
   selector: 'app-product-edit',

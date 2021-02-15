@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductModel } from 'src/app/interfaces/product.model';
-import { CartService } from 'src/app/services/cart.service';
-import { PagerService } from 'src/app/services/pager.service';
-import { ProductService } from 'src/app/services/product.service';
-import { ToasterService } from 'src/app/services/toaster.service';
+import { ProductModel } from '../../interfaces/product.model';
+import { CartService } from '../../services/cart.service';
+import { PagerService } from '../../services/pager.service';
+import { ProductService } from '../../services/product.service';
+import { ToasterService } from '../../services/toaster.service';
 
 @Component({
   selector: 'app-product',

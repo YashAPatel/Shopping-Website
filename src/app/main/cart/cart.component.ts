@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { CartModel } from 'src/app/interfaces/cart.model';
-import { ProductModel } from 'src/app/interfaces/product.model';
-import { CartService } from 'src/app/services/cart.service';
-import { ProductService } from 'src/app/services/product.service';
-import { ToasterService } from 'src/app/services/toaster.service';
+import { CartModel } from '../../interfaces/cart.model';
+import { ProductModel } from '../../interfaces/product.model';
+import { CartService } from '../../services/cart.service';
+import { ProductService } from '../../services/product.service';
+import { ToasterService } from '../../services/toaster.service';
 
 @Component({
   selector: 'app-cart',
