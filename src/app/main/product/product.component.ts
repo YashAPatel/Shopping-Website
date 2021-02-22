@@ -18,9 +18,10 @@ export class ProductComponent implements OnInit, OnDestroy {
   public products: ProductModel[];
   public totalProducts: number;
   public searchTitle: string;
-  public pager: any = {};
+  public page:number=1;
+/*   public pager: any = {};
   public pagedItems: ProductModel[];
-  public subscription: Subscription;
+ */  public subscription: Subscription;
 
   constructor(private router: Router,
               private productService: ProductService, 
@@ -38,17 +39,17 @@ export class ProductComponent implements OnInit, OnDestroy {
           console.log(products);
           this.products = products;
           this.productService.productsList = products;
-          this.setPage(1);
+          //this.setPage(1);
         }
       );
     
   }
 
-  public setPage(page: number) {
+ /*  public setPage(page: number) {
     this.pager = this.pagerService.getPager(this.products.length, page);
     this.pagedItems = this.products.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
-  public onEdit(id: number): void {
+  */ public onEdit(id: number): void {
     this.router.navigateByUrl(`/product/edit/${id}`);
   }
 
@@ -58,7 +59,7 @@ export class ProductComponent implements OnInit, OnDestroy {
         console.log(resdata);
         this.toasterService.showSuccess('Product Deleted Successfully',this.products[id].title);
         this.products.splice(id, 1);
-        this.setPage(this.pager.currentPage);
+        //this.setPage(this.pager.currentPage);
       },
       (error) => {
         this.toasterService.showError('Error', error);
@@ -73,7 +74,7 @@ export class ProductComponent implements OnInit, OnDestroy {
           this.products[index].title,
           'Added to the cart'
         );
-        this.setPage(this.pager.currentPage);
+        //this.setPage(this.pager.currentPage);
       },
       (error) => {
         this.toasterService.showError('Error', error);
@@ -81,6 +82,10 @@ export class ProductComponent implements OnInit, OnDestroy {
     );
   }
 
+  public resetPage(){
+    this.page=1;
+    
+  }
   ngOnDestroy(): void{
     this.subscription.unsubscribe();
   }

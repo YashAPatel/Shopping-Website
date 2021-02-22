@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchFilterPipe } from '../../core/pipes/search-filter.pipe';
 import { SharedModule } from '../../core/shared.module';
 import { AuthGuard } from '../../guards/auth.guard';
@@ -10,7 +11,7 @@ import { ProductComponent } from './product.component';
   declarations: [
     ProductComponent,
     ProductEditComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
   ],
   imports: [
     RouterModule.forChild([
@@ -21,6 +22,7 @@ import { ProductComponent } from './product.component';
         component: ProductEditComponent
       },
     ]),
+    NgxPaginationModule,
     SharedModule,
   ],
 })
