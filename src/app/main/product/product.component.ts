@@ -58,13 +58,12 @@ export class ProductComponent implements OnInit, OnDestroy {
     );
   }
 
-  public onAddtoCart(id: number): void{
-    let index=id-1;
-    this.subscription = this.cartService.addToCart(this.products[index]).subscribe(
+  public onAddtoCart(product: ProductModel): void{
+    this.subscription = this.cartService.addToCart(product).subscribe(
       (data) => {
         console.log(data);
         this.toasterService.showSuccess(
-          this.products[index].title,
+          product.title,
           'Added to the cart'
         );
       },
