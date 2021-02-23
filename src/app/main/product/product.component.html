@@ -32,7 +32,7 @@
           <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
         </div>
         <div class="row">
-          <div class="col-md-6" *ngFor="let product of products | SearchFilterPipe : searchTitle | paginate: {itemsPerPage: 2 , currentPage: page} ">
+          <div class="col-md-6" *ngFor="let product of products | SearchFilterPipe : searchTitle | paginate: {itemsPerPage: 4 , currentPage: page}; let i=index ">
             <div class="row md-1 cards">
               <div class="col-md-4">
                 <img 
@@ -51,9 +51,9 @@
                 </p>
                 <span class="category">{{ product.category }}</span>
                 <span class="button">
-                  <button class="btn btn-primary" (click)="onAddtoCart(product.id-1)"> ADD TO CART </button> |
-                  <button class="btn btn-primary" (click)="onEdit(product.id-1)"> EDIT </button> |
-                  <button class="btn btn-primary" (click)="onDelete(product.id-1)"> DELETE </button>
+                  <button class="btn btn-primary" (click)="onAddtoCart(product.id)"> ADD TO CART </button> |
+                  <button class="btn btn-primary" (click)="onEdit(product.id)"> EDIT </button> |
+                  <button class="btn btn-primary" (click)="onDelete(product.id)"> DELETE </button>
                 </span>
                 <br>
               </div>

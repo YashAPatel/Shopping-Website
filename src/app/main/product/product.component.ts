@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   public products: ProductModel[];
   public totalProducts: number;
   public searchTitle: string;
-  public page:number=1;
+  public page:number;
   public subscription: Subscription;
 
   constructor(private router: Router,
@@ -40,15 +40,17 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   public onEdit(id: number): void {
-    this.router.navigateByUrl(`/product/edit/${id}`);
+    this.router.navigateByUrl(`/product/edit/${id-1}`);
   }
 
   public onDelete(id: number): void {
     this.subscription = this.productService.deleteProduct(id).subscribe(
       (resdata) => {
         console.log(resdata);
-        this.toasterService.showSuccess('Product Deleted Successfully',this.products[id].title);
-        this.products.splice(id, 1);
+        this.toasterService.showSuccess('Product Deleted Successfully',resdata.title);
+        this.products = this.products.filter(
+          (value) => value.id !== id
+        );
       },
       (error) => {
         this.toasterService.showError('Error', error);
@@ -56,9 +58,11 @@ export class ProductComponent implements OnInit, OnDestroy {
     );
   }
 
-  public onAddtoCart(index: number): void{
-    this.subscription = this.cartService.addToCart(index,this.products[index]).subscribe(
-      () => {
+  public onAddtoCart(id: number): void{
+    let index=id-1;
+    this.subscription = this.cartService.addToCart(this.products[index]).subscribe(
+      (data) => {
+        console.log(data);
         this.toasterService.showSuccess(
           this.products[index].title,
           'Added to the cart'

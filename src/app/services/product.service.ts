@@ -59,7 +59,7 @@ export class ProductService {
     );
   }
 
-  public deleteProduct(index: number){
-    return this.http.delete(this.URL + index);
+  public deleteProduct(index: number): Observable<ProductModel>{
+    return this.http.delete<ProductModel>(this.URL + index);
   }
 }

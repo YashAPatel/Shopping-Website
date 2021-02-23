@@ -93,7 +93,7 @@ export class CartComponent implements OnInit, OnDestroy {
   public onChangeProductQuantity(index: number,productQuantity: HTMLInputElement) : void {
     this.subscription = this.cartService.changeProductQuantity(this.userIdsCart,index, +productQuantity.value).subscribe(
       ()=>{
-        this.toasterService.showInfo("Product updated",this.userIdsCart);
+        this.toasterService.showInfo("Product updated",'In User ID: '+this.userIdsCart);
       },
       (error)=>{
         this.toasterService.showError('Error',error);

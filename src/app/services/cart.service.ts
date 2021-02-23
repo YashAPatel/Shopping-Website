@@ -21,12 +21,10 @@ export class CartService {
     return this.http.get<CartModel[]>(this.URL+'/user/'+userId);
   }
 
-  public addToCart(index: number, addingProduct: ProductModel){
-    return this.http.put('https://fakestoreapi.com/carts/1', {
-      userid: 3,
-      date: '2019-12-10',
-      product: [{ productId: addingProduct.id, quantity: 3 }],
-    });
+  public addToCart(addingProduct: ProductModel){
+    const date =new Date();
+    const cart: CartModel={id:1,userId: 1, date: date, products: [{ productId: addingProduct.id, quantity: 3 }]};
+    return this.http.put('https://fakestoreapi.com/carts/1',cart);
   }
   
   public removeProduct(index: number) {
@@ -34,10 +32,8 @@ export class CartService {
   }
 
   public changeProductQuantity(userId: number,index: number, productQuantity: number) {
-    return this.http.put('https://fakestoreapi.com/carts/1', {
-      userId: userId,
-      date: '2019-12-10',
-      products: [{ productId: index, quantity: productQuantity }],
-    });
+    const date =new Date();
+    const cart: CartModel={id:1,userId: userId, date: date, products: [{ productId: index, quantity: productQuantity }]};
+    return this.http.put('https://fakestoreapi.com/carts/1',cart);
   }
 }

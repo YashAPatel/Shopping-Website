@@ -3,5 +3,5 @@ export interface CartModel {
     userId:Number;
     date:Date;
     products:{productId:Number,quantity:Number}[];
-    __v:number;
+    __v?:number;
 }
