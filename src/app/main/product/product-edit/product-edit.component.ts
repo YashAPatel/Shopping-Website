@@ -62,10 +62,19 @@ export class ProductEditComponent implements OnInit, OnDestroy {
         });
       }
       this.editForm = new FormGroup({
-        'productTitle': new FormControl(productTitle,Validators.required),
-        'productCategory': new FormControl(productCategory,Validators.required),
+        'productTitle': new FormControl(productTitle,[
+                                          Validators.required,
+                                          Validators.minLength(2)
+                                  ]),
+        'productCategory': new FormControl(productCategory,[
+                                          Validators.required,
+                                          Validators.minLength(3)
+                                  ]),
         'productPrice': new FormControl(productPrice,Validators.required),
-        'productDescription': new FormControl(productDescription,Validators.required)
+        'productDescription': new FormControl(productDescription,[
+                                          Validators.required,
+                                          Validators.minLength(2)
+                                  ]),
       });
     }
     

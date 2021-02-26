@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
   
-  constructor(private AuthService: AuthService,
+  constructor(private authService: AuthService,
               private router: Router,
               private toasterService: ToasterService) {}
 
@@ -36,11 +36,12 @@ export class LoginComponent implements OnInit, OnDestroy {
                       Validators.minLength(6)
               ]),
     });
+    this.authService.autoLogin();
   }
 
   public onSubmitForm(): void {
     this.isLoading = true;
-    this.subscription = this.AuthService
+    this.subscription = this.authService
       .loginUser(
             this.loginForm.value.email,
             this.loginForm.value.password

@@ -5,10 +5,10 @@ import { map, take } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard implements CanActivate {
+export class LoggedInGuard implements CanActivate {
   constructor(private authService: AuthService, 
               private router: Router) {
-                console.log("lkkml");
+                console.log("azsxsaxasx");
                 
               }
 
@@ -24,10 +24,10 @@ export class AuthGuard implements CanActivate {
       take(1),
       map((user) => {
         const isAuth = !!user;
-        if (isAuth) {
+        if (!isAuth) {
           return true;
         }
-        return this.router.createUrlTree(['/auth']);
+        return this.router.createUrlTree(['/product']);
       })
     );
   }

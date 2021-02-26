@@ -51,9 +51,8 @@ export class AuthService {
     if (!userData) {
       return;
     }
-    if (userData.token) {
+    if (this.user) {
       this.user.next(userData);
-      this.router.navigate(['/product']);
     }
   }
 }
